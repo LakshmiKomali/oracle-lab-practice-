@@ -1,0 +1,70 @@
+
+SQL> begin
+  2  update dept set dname='products' where deptno=60;
+  3  dbms_output.put_line(sql%rowcount);
+  4  if sql%rowcount = 0 then
+  5  insert into dept values(60,'production','lo');
+  6  end if;
+  7  end;
+  8  /
+0
+
+PL/SQL procedure successfully completed.
+
+SQL> select *from dept;
+
+    DEPTNO DNAME          LOC
+---------- -------------- -------------
+        50 products       lo
+        60 production     lo
+        10 ACCOUNTING     NEW YORK
+        20 RESEARCH       DALLAS
+        30 SALES          CHICAGO
+        40 OPERATIONS     BOSTON
+
+6 rows selected.
+
+SQL> begin
+  2  update dept set dname='products' where deptno=50;
+  3  dbms_output.put_line(sql%rowcount);
+  4  if sql%rowcount = 0 then
+  5  insert into dept values(60,'production','lo');
+  6  end if;
+  7  end;
+  8  /
+1
+
+PL/SQL procedure successfully completed.
+
+SQL> declare
+    cursor c_staff is
+    select staff_code,staff_name,dept_code from staff_master where dept_code=10
+
+    for update of staff_master.dept_code NOWAIT;
+    s_code staff_master.staff_code%type;
+   begin
+    for v_rec in c_staff
+    loop
+    dbms_output.put_line(v_rec.staff_code|| v_rec.dept_code);
+   end loop;
+   for v_rec in c_staff
+   loop
+  update staff_master set dept_code=50 where current of c_staff;
+ end loop;
+ end;
+ /
+ 10000310
+10000510
+
+PL/SQL procedure successfully completed.
+
+ 
+
+
+
+
+
+
+
+
+

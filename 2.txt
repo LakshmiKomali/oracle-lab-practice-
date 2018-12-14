@@ -1,0 +1,160 @@
+SQL> create sequence seq_staff start with 1001 maxvalue 2000 nocycle;
+
+Sequence created.
+
+SQL> insert into staff(sid,sname) values(seq_staff.NEXTVAL,'abs');
+
+1 row created.
+
+SQL> select *from staff;
+
+       SID SNAME      STCIT        DNO EXPERIANCE
+---------- ---------- ----- ---------- ----------
+      1001 abs        PUNE
+       101 komali     bngl          10          9
+       102 krupa      hyd           10          5
+       103 ratnam     pune          20          3
+       104            pune          20         13
+
+SQL> insert into staff(sid,sname,dno,experiance) values(seq_staff.NEXTVAL,'abs'
+30,4);
+
+1 row created.
+
+SQL> select *from staff;
+
+       SID SNAME      STCIT        DNO EXPERIANCE
+---------- ---------- ----- ---------- ----------
+      1001 abs        PUNE
+      1002 abs        PUNE          30          4
+       101 komali     bngl          10          9
+       102 krupa      hyd           10          5
+       103 ratnam     pune          20          3
+       104            pune          20         13
+
+6 rows selected.
+
+SQL> create view staffview as select sname,experiance from staff where dno=10;
+
+View created.
+
+SQL> select *from staffview;
+
+SNAME      EXPERIANCE
+---------- ----------
+komali              9
+krupa               5
+
+SQL> insert into staff values(106,'jhdgf','hyd',30,5);
+
+1 row created.
+
+SQL> insert into staff values(107,'jhdgf','hyd',20,5);
+
+1 row created.
+
+SQL> savepoint A;
+
+Savepoint created.
+
+SQL> select *from staff;
+
+       SID SNAME      STCIT        DNO EXPERIANCE
+---------- ---------- ----- ---------- ----------
+      1001 abs        PUNE
+      1002 abs        PUNE          30          4
+       106 jhdgf      hyd           30          5
+       107 jhdgf      hyd           20          5
+       101 komali     bngl          10          9
+       102 krupa      hyd           10          5
+       103 ratnam     pune          20          3
+       104            pune          20         13
+
+8 rows selected.
+
+SQL> insert into staff values(1,'anu','che',10,8);
+
+1 row created.
+
+SQL> insert into staff values(2,'anusha','che',10,8);
+
+1 row created.
+
+SQL> savepoint B;
+
+Savepoint created.
+
+SQL> select *from staff;
+
+       SID SNAME      STCIT        DNO EXPERIANCE
+---------- ---------- ----- ---------- ----------
+      1001 abs        PUNE
+      1002 abs        PUNE          30          4
+       106 jhdgf      hyd           30          5
+       107 jhdgf      hyd           20          5
+         1 anu        che           10          8
+       101 komali     bngl          10          9
+       102 krupa      hyd           10          5
+       103 ratnam     pune          20          3
+       104            pune          20         13
+         2 anusha     che           10          8
+
+10 rows selected.
+
+SQL> insert into staff values(109,'jhdgf','hyd',30,5);
+
+1 row created.
+
+SQL> insert into staff values(19,'jhdgf','hyd',30,5);
+
+1 row created.
+
+SQL> rollback;
+
+Rollback complete.
+
+SQL> select *from staff;
+
+       SID SNAME      STCIT        DNO EXPERIANCE
+---------- ---------- ----- ---------- ----------
+      1001 abs        PUNE
+      1002 abs        PUNE          30          4
+       101 komali     bngl          10          9
+       102 krupa      hyd           10          5
+       103 ratnam     pune          20          3
+       104            pune          20         13
+
+6 rows selected.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+		
+		
+ 
+

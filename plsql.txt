@@ -1,0 +1,90 @@
+
+SQL> declare
+  2  v_rec emp%ROWTYPE;
+  3  begin
+  4  select * into v_rec from emp where empno=7369;
+  5  DBMS_OUTPUT.PUT_LINE(v_rec.empno || ' ' || v_rec.ename);
+  6  end;
+  7  /
+7369 SMITH
+
+PL/SQL procedure successfully completed.
+
+
+
+SQL> declare
+  2  begin
+  3  DBMS_OUTPUT
+  4  .PUT_LINE('HII');
+  5  END;
+  6  /
+
+PL/SQL procedure successfully completed.
+
+SQL> SET SERVEROUTPUT ON
+SQL> /
+HII
+
+PL/SQL procedure successfully completed.
+
+
+SQL> DECLARE
+  2             nNum NUMBER:=10;
+  3      BEGIN
+  4             DBMS_OUTPUT.PUT_LINE('Outer Block');
+  5             DBMS_OUTPUT.PUT_LINE(nNum);
+  6             <<INNER>>
+  7             DECLARE
+  8                     nNum NUMBER:=20;
+  9             BEGIN
+ 10               DBMS_OUTPUT.PUT_LINE('Inner Block');
+ 11               DBMS_OUTPUT.PUT_LINE(nNum);
+ 12
+ 13             END;
+ 14             DBMS_OUTPUT.PUT_LINE(nNum);
+ 15    END;
+ 16     /
+Outer Block
+10
+Inner Block
+20
+10
+
+PL/SQL procedure successfully completed.
+
+
+SQL> declare
+  2  v_dname varchar2(15) := 'Accounts';
+  3  begin
+  4  insert into department_master values(60,v_dname);
+  5  end;
+  6  /
+
+PL/SQL procedure successfully completed.
+
+SQL> declare
+  2  v_sal_incr number(5) := 1000;
+  3  begin
+  4  update staff_master set staff_sal=staff_sal+v_sal_incr where staff_name='smith';
+  5  end;
+  6  /
+
+PL/SQL procedure successfully completed.
+
+
+SQL>  DECLARE
+  2     nSal NUMBER;
+  3         nMinSal NUMBER;
+  4      BEGIN
+  5         SELECT sal INTO nSal FROM employee WHERE empno=7698;
+  6         SELECT min(sal) INTO nMinSal FROM employee;
+  7         IF nSal<nMinSal
+  8         THEN
+  9                 UPDATE employee SET sal=sal*.2 WHERE empno=7698;
+ 10        END IF;
+ 11     END;
+ 12     /
+
+PL/SQL procedure successfully completed.
+
+

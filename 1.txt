@@ -1,0 +1,304 @@
+create table staff(sid number primary key,sname varchar(10),stcity varchar(10) DEFAULT 'PUNE');
+insert into staff values(101,'anil','hyd');
+insert into staff(sid,stcity) values(102,'pune');
+insert into staff(sid,sname) values(103,'krupa');
+insert into staff values(104,'ratnam','');
+insert into staff values(&sid,'&sname','&stcity');
+
+ select *from staff;
+
+   SID SNAME      STCIT
+------ ---------- -----
+   101 komali     vnk
+   102            pune
+   103 krupa      PUNE
+   104 ratnam
+   105 ramya      andh
+   
+   create table deptart(dno number primary key,dname varchar(10) not null);
+   
+   
+   
+   
+   alter table staff add dno number(5);
+SQL> alter table staff add CONSTRAINT dno_fk FOREIGN KEY(dno)
+dno);
+
+Table altered.
+
+SQL> desc depart;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------
+
+ DNO                                       NOT NULL NUMBER(6)
+ DNAME                                     NOT NULL VARCHAR2(1
+
+SQL> desc staff;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------
+
+ SID                                       NOT NULL NUMBER(5)
+ SNAME                                              VARCHAR2(1
+ STCITY                                             VARCHAR2(5
+ DNO                                                NUMBER(5)
+   
+   SQL> delete from depart where dno=10;
+delete from depart where dno=10
+*
+ERROR at line 1:
+ORA-02292: integrity constraint (LAB2ATRG24.DNO_FK) violated - child record
+found
+
+
+SQL> delete from depart where dno=30;
+
+1 row deleted.
+        
+   SQL> update staff set stcity='bngl' where dno=10;
+1 row updated.  
+    select *from staff;
+
+   SID SNAME      STCIT        DNO
+------ ---------- ----- ----------
+   101 komali     bngl          10
+   102 krupa      hyd           20
+   103 ratnam     pune          20
+   
+   
+   
+   
+   SQL> insert into staff values(104,null,'pune',10);
+
+1 row created.
+
+SQL> select *from staff;
+
+       SID SNAME      STCIT        DNO
+---------- ---------- ----- ----------
+       101 komali     bngl          10
+       102 krupa      hyd           20
+       103 ratnam     pune          20
+       104            pune          10
+
+ select *from staff where sname is null;
+
+   SID SNAME      STCIT        DNO
+------ ---------- ----- ----------
+   104            pune          10
+   
+   
+SQL> alter table staff drop constraint dno_fk;
+
+Table altered.
+
+SQL> alter table staff drop column dno;
+
+Table altered.
+
+
+SQL> desc staff;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+
+ SID                                       NOT NULL NUMBER(5)
+ SNAME                                              VARCHAR2(10)
+ STCITY                                             VARCHAR2(5)
+
+SQL> alter table staff add dno number(5);
+
+Table altered.
+
+SQL> alter table staff add constraint fk_dno foreign key (dno) references depart
+(dno);
+
+Table altered.
+
+SQL> update staff set dno=10 where sid=101;
+
+1 row updated.
+
+SQL> update staff set dno=10 where sid=102;
+
+1 row updated.
+
+SQL> update staff set dno=20 where sid=103;
+
+1 row updated.
+
+SQL> update staff set dno=20 where sid=104;
+
+1 row updated.
+
+SQL> select *from staff;
+
+       SID SNAME      STCIT        DNO
+---------- ---------- ----- ----------
+       101 komali     bngl          10
+       102 krupa      hyd           10
+       103 ratnam     pune          20
+       104            pune          20
+
+SQL> select count(*) from staff where dno=10 group by dno;
+
+  COUNT(*)
+----------
+         2
+
+SQL> select count(*) from staff where dno=20 group by dno;
+
+  COUNT(*)
+----------
+         2
+
+select dno,count(*) from staff where dno=20 group by dno
+
+      DNO   COUNT(*)
+--------- ----------
+       20          2
+
+select count(sname) from staff;
+
+OUNT(SNAME)
+-----------
+          3
+
+SQL> select dno,count(*) from staff having count(*)>1 group by dno;
+
+       DNO   COUNT(*)
+---------- ----------
+        20          2
+        10          2
+
+SQL> select dno,count(*) from staff s group by dno having count(*)>1;
+
+       DNO   COUNT(*)
+---------- ----------
+        20          2
+        10          2
+
+SQL> select dno,count(*) from staff s group by s.dno;
+
+       DNO   COUNT(*)
+---------- ----------
+        20          2
+        10          2
+		
+SQL> select sname,dname from staff s,depart d where dname='HR' and s.dno=d.dno;
+
+SNAME      DNAME
+---------- ----------
+ratnam     HR
+           HR
+
+	   
+SQL> select s.sid,s.sname,d.dname from staff s,depart d where s.dno(+)=d.dno;
+
+       SID SNAME      DNAME
+---------- ---------- ----------
+       101 komali     CSE
+       102 krupa      CSE
+       103 ratnam     HR
+       104            HR
+                     testing
+					  
+					  
+
+SQL> select s.sid,s.sname,d.dname from staff s,depart d where s.dno=d.dno(+);
+
+       SID SNAME      DNAME
+---------- ---------- ----------
+       101 komali     CSE
+       102 krupa      CSE
+       103 ratnam     HR
+       104            HR
+
+SQL> alter table staff add experiance number;
+
+Table altered.
+
+
+SQL> desc staff;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+
+ SID                                       NOT NULL NUMBER(5)
+ SNAME                                              VARCHAR2(10)
+ STCITY                                             VARCHAR2(5)
+ DNO                                                NUMBER(5)
+ EXPERIANCE                                         NUMBER
+
+SQL> update staff set experiance=9 where sid=101;
+
+1 row updated.
+
+SQL> update staff set experiance=5 where sid=102;
+
+1 row updated.
+
+SQL> update staff set experiance=3 where sid=103;
+
+1 row updated.
+
+SQL> update staff set experiance=13 where sid=104;
+
+1 row updated.
+
+SQL> select *from staff;
+
+       SID SNAME      STCIT        DNO EXPERIANCE
+---------- ---------- ----- ---------- ----------
+       101 komali     bngl          10          9
+       102 krupa      hyd           10          5
+       103 ratnam     pune          20          3
+       104            pune          20         13
+
+
+SQL> select sname,max(experiance) from staff group by sname;
+
+SNAME      MAX(EXPERIANCE)
+---------- ---------------
+                        13
+komali                   9
+krupa                    5
+ratnam                   3
+
+SQL> select max(experiance) from staff;
+
+MAX(EXPERIANCE)
+---------------
+             13
+SQL> select max(experiance) from staff where experiance < (select max(experiance
+) from staff);
+
+MAX(EXPERIANCE)
+---------------
+              9			 
+
+SQL> select max(experiance) from staff where experiance not in (select max(exper
+iance) from staff);
+
+MAX(EXPERIANCE)
+---------------
+              9
+SQL> select sname,experiance from staff where experiance > any(3,5,7);
+
+SNAME      EXPERIANCE
+---------- ----------
+komali              9
+krupa               5
+                   13
+
+SQL> select sname,experiance from staff where experiance > all(3,5,7);
+
+SNAME      EXPERIANCE
+---------- ----------                                                                                                                                                                              
+komali              9
+                   13
+
+SQL> select sname,experiance from staff where experiance = any(3,5,7);
+
+SNAME      EXPERIANCE
+---------- ----------
+krupa               5
+ratnam              3
+				   
