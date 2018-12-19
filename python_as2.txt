@@ -1,0 +1,217 @@
+5. Write a function filter_long_words() that takes a list of words and an integer n and returns the list of words that are longer than n.
+ Modify the same to do with lambda expression.
+
+def filter_long_words(string, number):
+     return list(filter(lambda word:len(word)>number, string.split()))
+words = input("Enter list of words:")
+num = int(input("Enter an integer:"))
+print("Words with length greater than input integer are:", filter_long_words(words, num))
+
+output:
+ Enter list of words: capgemini training
+Enter an integer:8
+Words with length greater than input integer are: ['capgemini']
+----------------------------------------------------------------------------------------------------
+6. Write a version of a palindrome recognizer that also accepts phrase palindromes such as 
+"Go hang a salami I'm a lasagna hog.", 
+"Was it a rat I saw?", 
+"Step on no pets", 
+"Sit on a potato pan, Otis", 
+"Lisa Bonet ate no basil", 
+"Satan, oscillate my metallic sonatas", 
+"I roamed under it as a tired nude Maori", 
+"Rise to vote sir", or the exclamation 
+"Dammit, I'm mad!". 
+Note that punctuation, capitalization, and spacing are usually ignored.
+
+string = str(input("Enter a phrase:"))
+string = string.replace(" ","")
+string=''.join(i for i in string if i.isalnum())
+string=string.lower()
+revstring=string[::-1]
+if(string == revstring):
+    print("Palindrome")
+else:
+    print("Not Palindrome") 
+----------------------------------------------------------------------------------------------------------
+7. A pangram is a sentence that contains all the letters of the English alphabet at least once, 
+for example: The quick brown fox jumps over the lazy dog. 
+Your task here is to write a function to check a sentence to see if it is a pangram or not. 
+
+def pangran(arg):
+    if len(set('abcdefghijklmnopqrstuvwxyz')-set(arg.lower()))==0:
+         return True
+    else:
+         return False
+str = input("Enter a string to check pangram:")
+if(pangram(str)):
+     print("it is pangram")
+else:
+     print("it is not pangram")
+
+output:
+Enter a string to check pangram: The quick brown fox jumps over the lazy dog
+
+it is pangram
+----------------------------------------------------------------------------------------------
+8. Represent a small bilingual lexicon as a Python dictionary in the following fashion 
+{"merry":"god", "christmas":"jul", "and":"och", "happy":gott", "new":"nytt", "year":"år"}
+and use it to translate your Christmas cards from English into Swedish.
+That is, write a function translate() that takes a list of English words and returns a list of Swedish words.
+
+def translate():
+   b=input("Enter the words you want to translate:").split(" ")
+   c=[]
+   for i in b:
+       c.append(dic[i])
+   print(c)
+dic={"merry":"god", "christmas":"jul", "and":"och", "happy":gott", "new":"nytt", "year":"år"}
+translate()
+
+output:
+happy christmas
+['gott', 'jul']
+
+-------------------------------------------------------------------------------------------------
+9. Write a function char_freq() that takes a string and builds a frequency listing of 
+the characters contained in it. 
+Represent the frequency listing as a Python dictionary.
+Try it with something likechar_freq("abbabcbdbabdbdbabababcbcbab"). 
+
+def char_freq(inp):
+    char_dict={}
+    for c in inp:
+        if c in char_dict:
+             char_dict[c]+=1
+        else:
+             char_dict[c]=1
+    return char_dict
+inp=input("Enter a nstring:")
+print(char_freq(inp))
+
+output:
+Enter a String: saikrupa
+{'s': 1, 'a': 2, 'i': 1, 'k': 1, 'r': 1, 'u': 1, 'p': 1}
+--------------------------------------------------------------------------------------
+10. Create a module called mathematics.py and provide subroutines 
+(should be defined generally and should work for any number of arguments) 
+such as:  
+Add  Sub  Sort the values  Max   Sort  
+ 
+Use the module in a program and apply the functions on two array variables 
+(say a and b) to:   
+Add two arrays (and store it in c) 
+Subtract two arrays(and store it in d)  
+Find the minimum and maximum value of the 
+resultant array (c or d)  Sort the resultant array(c or d) 
+
+         
+imort mathematics as m
+c=m.Add([1,2,3,4],[3,2,1,4])
+d=m.Sub([1,2,3,4],[1,5,2,4])
+print(c)
+print(d)
+print(m.Max(c))
+print(m.Min(d))
+print(m.Sort(c))
+print(m.Sort(d))
+
+output:
+[4,4,8,11] [-2,0,-2,-3]
+[4,4,8,11]
+11
+-3
+
+------------------------------------------------------------------------
+11. Try above programe with package. 
+
+import math1
+a= [1,2,3,4]
+b= [3,2,5,7]
+c= Add(a,b)
+d= Sub(a,b)
+print(c,d)
+print(Sort(c))
+print(Max(c))
+print(Min(d))
+
+output:
+[4,4,8,11] [-2,0,-2,-3]
+[4,4,8,11]
+11
+-3
+---------------------------------------------------------------------------------
+12. Create a Date class, which represents the Date with its attributes.
+ Write a  UseDate class, which makes use of the Date class to instantiate, 
+and call methods on the object.  
+ 
+class DateClass:
+    def__init__(self,date,month,year):
+       self.date=date
+       self.month=month
+       self.year=year
+    def mon(self):
+       print("Months=",self.month)
+    def datee(self):
+       print("Date=",sellf.date)
+    def yeaar(self):
+       print("Year=",sellf.year)
+dc=DateClass(10,'December',2018)
+dc.datee()
+dc.mon()
+dc.yeaar()
+
+output:
+Date= 10
+Month= December
+Year= 2018
+-------------------------------------------------------------
+13. WAP to read data from one file and writes in second file. 
+f0=open('D\day1_13\in.txt','w+')
+f0.write("Capgemini training")
+f0.close
+f0=open('D\day1_13\in.txt','r')
+f1=open('D\day1_13\out.txt','w+')
+for line in f0:
+    f1.werite(line)
+f1=open('D\day1_13\out.txt','r')
+str=f1.read()
+print(str)
+f1.close()
+f0.close()
+
+output:
+Capgemini training
+
+-------------------------------------------------------------------------
+
+14. WAP which will display diffrenent function of math and numpy library. 
+
+import numpy as np
+list = [1,2,3,4,5,6,7]
+matrix = [[5,10,15,20,25],[30,35,40,45,50],[55,60,65,70,75]]
+print('array='+str(np.array((list))))
+print('array of zeros='+str(np.zeros([5,5])))
+print('unit matrix='+str(np.eye(4)))
+print('arange function='+str(np.arange(1,10,2)))
+print('random function='+str(np.random.rand(4)))
+print('random function='+str(np.random.radiant(1,100,10)))
+a=np.arange(1,10)
+print('max value='+str(np.max(a)))
+print('min value='+str(np.min(a)))
+print('mean value='+str(np.mean(a)))
+print('sqr root='+str(np.sqrt(a)))
+print('power='+str(np.power(a,2)))
+import math as m
+print('ceiling function='+str(m.ceil(100.32)))
+print('floor fun='+str(m.floor(100.45)))
+print('exponent fun='+str(m.exp(100.12)))
+print('absolute fun='+str(m.fabs(-35.13)))
+print('fraction fun='+str(m.modf(100.15)))
+print('power fun='+str(m.pow(2,4)))
+print('square root='+str(m.sqrt(10)))
+print('sine fun='+str(m.sin(9)))
+print('cosine fun='+str(m.cos(15)))
+
+
+
