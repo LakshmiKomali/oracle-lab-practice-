@@ -1,0 +1,260 @@
+                                                                                       Day1
+
+1.Input your name into a variable called $name and then print "Hello, <your name here>".
+
+name=input("enter your name:")
+print("Hello",name)
+o/p:
+enter your name:komali
+Hello,komali
+------------------------------------------------------------------------------
+2. Write a program that adds two numbers and then prints out whether the sum of those two numbers is positive or negative.
+
+num1=int(input("enter a number:")) 
+num2=int(input("enter another number:"))
+sum=num1+num2
+x=0
+if(sum>x):
+	print("sum is possitive")
+else:
+	print("sum is negative")
+o/p:
+enter a number:54
+enter another number:12
+sum is positive
+-------------------------------------------------------------------------
+3. Write a program that stores a number and keeps trying to get user input until the user enters the number correctly. As soon as the correct number is entered, it prints: Correct!
+
+i=9
+n=int(input("enter number:"))
+while True:
+	if(n!=i):
+		n=int(input("enter another number:"))
+	else:
+		print("correct")
+		break
+
+o/p:
+enter a number:6
+enter another number:3
+correct
+------------------------------------------------------------------------------
+4. Input your first name and last name as two separate variables, labeled as $firstname and $lastname respectively. Concatenate them together using the dot operator '.' into a new variable called $wholename. Then print out the $wholename. 
+
+first_name=input("enter firstname:")
+last_name=input("enter lastname:")
+whole_name = "{0} {1}".format(first_name,last_name)
+print(whole_name)
+
+o/p:
+enter firstname: komali
+enter lastname:pavuluri
+komali pavuluri
+-----------------------------------------------------------------------------
+5. Write a program to accept an input string from the user and toggle the character cases.
+For example, $str=” Hello How Are You?”
+O/p : hELLO hOW aRE yOU
+
+string=input("enter string :")
+print(string.swapcase())
+
+o/p:
+enter string :How are YOU?
+hOW ARE you?
+------------------------------------------------------------------------------
+6. Write a program which will perform sum and multiplication ,that sums and multiplies (respectively) all the numbers in a list of numbers. For example, sum([1, 2, 3, 4]) should return 10, and multiply([1, 2, 3, 4]) should return 24.
+
+a=[]
+x=int(input("enter the number of numbers u want to enter into the list"))
+i=0
+for i in range(x):
+	a.append(int(input("enter number:")))
+b=0
+for i in range(x):
+	b+=a[i]
+print(b)
+b=1
+for i in range(x):
+	b*=a[i]
+print(b)
+
+o/p:
+enter the number of numbers u want to enter into the list 3
+enter numbers:1
+enter numbers:3
+enter numbers:6
+10
+18
+-----------------------------------------------------------------------------
+7. Write a program that takes a value (i.e. a number, string, etc) x and a list of values a, and returns True if x is a member of a, False otherwise. (Note that this is exactly what the in operator does, but for the sake of the exercise you should pretend Python did not have this operator.) 
+
+list=input("enter element into list:").split()
+print(list)
+f=0
+x=input("enter value:")
+for y in list:
+	if x == y :
+	      f=1
+	      break
+if f==1:
+	print('present')
+else:
+	print('not present')
+o/p:
+enter element into list:6 5 7 8 3
+['6', '5', '7', '8' , '3' ]
+enter value:5
+present
+-----------------------------------------------------------------------------
+8. Write a program that has two lists and print True if they have at least one member in common, False otherwise. You may use your is_member() function, or the in operator, but for the sake of the exercise, you should (also) write it using two nested for-loops. 
+
+l1=['a','b','c','d'];
+l2=['e','f','b','g'];
+l3=['a','b','c','d'];
+l4=['e','f','g','h'];
+def is_member1(x):
+	if (x in l2):
+	     return('True')
+def is_member1(y):
+	if (y in l4):
+	     return('True')
+print('using Is_member function')
+print()
+print('l1= ',l1);
+print();
+print('l2 = ',l2);
+for i in l1:
+	m=is_member1(i)
+	if m=='True':
+	     print(i,' is present')
+	     break;
+if m=='True':
+	print(m)
+else:
+	print('False')
+print()
+print()
+o/p:
+using Is_member function
+l1=['a' , 'b', 'c' , 'd' ]
+l2=['e' , 'f' , 'b' , 'g' ]
+b is present
+True
+l3=['a' , 'b' , 'c' , 'd' ]
+l4=['e' , 'f' , 'g' , 'h' ]
+False
+------------------------------------------------------------------------------
+9. Write a program for histogram that takes a list of integers and prints a histogram to the screen. For example, histogram([4, 9, 7]) should print the following: 
+**** 
+********* 
+*******
+
+def histogram(lista):
+	for b in lista:
+	        line=" "
+	        c=0
+	        while c<b:
+	                c+=1
+	                line+="*"
+	         print(line)
+arr=[]
+print("input the number of * you want in each line")
+print("input end to finish")
+while True:
+           n=input("input the number of * in this line:")
+           if n=="end":
+                   break
+           else:
+                   n=int(n)
+                   arr.append(n)
+histogram(arr)
+
+o/p:
+input the number of * you want in each line
+input end to finish
+input the number of  * in this line:5
+input the number of  * in this line:2
+input the number of  * in this line:end
+*****
+**
+---------------------------------------------------------------------------------------------------------------------
+
+
+                                                                                        Day 2
+
+
+
+1.Define a function generate_n_chars() that takes an integer n and a character c and returns a string, n characters long, consisting only of c:s. For example, generate_n_chars(5,"x") should return the string "xxxxx". (Python is unusual in that you can actually write an expression 5 * "x" that will evaluate to "xxxxx". For the sake of the exercise you should ignore that the problem can be solved in this manner.)
+
+char1=input("enter a character :")
+int1=int(input("enter a number:"))
+def generate_n_chars(int1,char1):
+         for i in range(0,int1):
+                print(char1,end=" ")
+gnerate_n_chars(int1,char1)
+
+o/p:
+enter a character:u
+enter a number:6
+u u u u u u
+---------------------------------------------------------------------------------------------------------------------
+2.The function max() from exercise 1) and the function max_of_three() from exercise 2) will only work for two and three numbers, respectively. But suppose we have a much larger number of numbers, or suppose we cannot tell in advance how many they are? Write a function max_in_list() that takes list of numbers and returns the largest one. 
+
+def max_in_list(lista):
+         return max(lista)
+lista=[]
+print("write break to finish")
+while True:
+      num=input("introduce a num:")
+      if num=='break':
+                break
+      else:
+                num=int(num)
+                lista.append(num)
+print("max num in list:",max_in_list(lista))
+
+o/p:
+write break to finish
+introduce a num:5
+introduce a num:4
+introduce a num:100
+introduce a num:break
+max num in list:100
+---------------------------------------------------------------------------------------------------------------------
+3. Write a program that maps a list of words into a list of integers representing the lengths of the correponding words. 
+
+list1=input("enter list of words:").split()
+print(list1)
+for i in list1
+            print(len(i),end=" ")
+
+
+o/p:
+enter list of words:komali krupa
+['komali' , 'krupa' ]
+6 5
+--------------------------------------------------------------------------------------------------------------------
+4. Write a function find_longest_word() that takes a list of words and returns the length of the longest one. Modify the same to do with lambda expression. 
+
+def find_longest_word(list1):
+           c=0
+           for i in list1:
+                if(len(i)>c):
+                      c=len(i)
+           return c
+list1=input("enter words").split()
+print(list1)
+print("largest word length:", find_longest_word(list1))
+print("using lamda")
+length = 0
+word=lamda x:True,max(list1, key = len)
+length = len(word[1])
+print("The longest length is :",length)
+
+o/p:
+enter words komali krupa
+['komali' , 'krupa' ]
+largest word length: 6
+using lamda 
+The longest length is :6
+------------------------------------------------------------------------------
